@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+/* ============================================
+   THEME — "Researcher's Desk" Palette
+   Warm paper tones, olive/brass accents
+   ============================================ */
+@theme {
+  /* ---- Core palette ---- */
+  --color-paper: #F4F5F7;
+  --color-paper-light: #FAFBFC;
+  --color-paper-dark: #E8EAED;
+  --color-ink: #111318;
+  --color-ink-soft: #333840;
+  --color-ink-muted: #8B9099;
+  --color-olive: #3D7A5F;
+  --color-olive-light: #5A9E7C;
+  --color-olive-dark: #2B5E46;
+  --color-brass: #D4A24C;
+  --color-brass-light: #E4BE6E;
+  --color-brass-dark: #B5862E;
+  --color-warm-gray: #8B9099;
+  --color-dark-brown: #1A1D23;
+  --color-dark-brown-light: #2E323A;
+
+  /* ---- Semantic colors ---- */
+  --color-bg-primary: #F4F5F7;
+  --color-bg-secondary: #FAFBFC;
+  --color-bg-card: #FFFFFF;
+  --color-bg-card-hover: #EDEEF1;
+  --color-bg-input: #FAFBFC;
+  --color-bg-active: #E8F5EE;
+
+  --color-border-subtle: #E2E4E8;
+  --color-border-medium: #D1D4DA;
+  --color-border-accent: #3D7A5F;
+
+  --color-text-primary: #111318;
+  --color-text-secondary: #333840;
+  --color-text-muted: #8B9099;
+  --color-text-accent: #3D7A5F;
+
+  --color-accent-primary: #3D7A5F;
+  --color-accent-secondary: #D4A24C;
+
+  --color-error: #D04040;
+  --color-error-bg: #FEF0F0;
+  --color-success: #3D7A5F;
+
+  /* ---- Typography ---- */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 3px rgba(17, 19, 24, 0.08);
+  --shadow-md: 0 4px 12px rgba(17, 19, 24, 0.1);
+  --shadow-lg: 0 8px 24px rgba(17, 19, 24, 0.12);
+  --shadow-card: 0 1px 4px rgba(17, 19, 24, 0.06), 0 0 0 1px rgba(17, 19, 24, 0.03);
+
+  /* ---- Animations ---- */
+  --animate-fade-in: fade-in 0.4s ease-out;
+  --animate-fade-slide-up: fade-slide-up 0.4s ease-out;
+  --animate-fade-slide-down: fade-slide-down 0.5s ease-out;
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
+  --animate-spin: spin 0.6s linear infinite;
+  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
+}
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+/* ============================================
+   BASE LAYER
+   ============================================ */
+@layer base {
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle paper texture gradient */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(61, 122, 95, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(212, 162, 76, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-medium);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-warm-gray);
+}
+
+/* ============================================
+   CUSTOM UTILITIES
+   ============================================ */
+@utility skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-paper-dark) 25%,
+    var(--color-paper) 50%,
+    var(--color-paper-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@utility typing-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-warm-gray);
+  border-radius: 50%;
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+
+@utility typing-dot-delay-1 {
+  animation-delay: 0.15s;
+}
+
+@utility typing-dot-delay-2 {
+  animation-delay: 0.3s;
+}
+
+/* Video wrapper 16:9 aspect ratio */
+@utility video-aspect {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}

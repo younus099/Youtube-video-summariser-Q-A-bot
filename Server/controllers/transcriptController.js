@@ -29,7 +29,7 @@ export const getTranscript = async (req, res) => {
       .join(" ");
 
     const summary = await generateSummary(fullText);
-    // const summary = "test summary";
+
     res.json({
       success: true,
       videoId,
@@ -38,17 +38,10 @@ export const getTranscript = async (req, res) => {
     });
 
   } catch (error) {
-    // res.status(500).json({
-    //   success: false,
-    //   message: error.message || "Transcript not available"
-    // });
     console.error("SERVER ERROR:", error);
-
-  res.status(500).json({
-    success: false,
-    message: error.message,
-    stack: error.stack
-  });
-
+    res.status(500).json({
+      success: false,
+      message: error.message || "Transcript not available"
+    });
   }
 };
