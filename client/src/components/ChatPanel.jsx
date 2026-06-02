@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-
+import { MarkdownHooks as ReactMarkdown } from "react-markdown";
 /**
  * ChatPanel — Full-height Q&A chat interface.
  *
@@ -62,7 +62,7 @@ function ChatPanel({ chatHistory, question, setQuestion, onAsk, askingAI }) {
             <div className="text-[0.65rem] font-semibold uppercase tracking-wider mb-1 text-text-muted">
               {msg.role === "user" ? "You" : "AI"}
             </div>
-            {msg.text}
+            <ReactMarkdown>{msg.text}</ReactMarkdown>
           </div>
         ))}
 
